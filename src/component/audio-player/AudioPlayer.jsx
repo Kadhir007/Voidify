@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./AudioPlayer.css";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
-// import { TiArrowLoop } from "react-icons/ti";
-// import { BsShuffle } from "react-icons/bs";
-import imageUrl from "../asserts/Cover.jpg";
+
+// import imageUrl from "../asserts/Cover.jpg";
 import {
   BsFillVolumeMuteFill,
   BsFillVolumeUpFill,
@@ -42,6 +41,15 @@ const AudioPlayer = () => {
       type: SET_ISPLAYING,
     });
   };
+  const handleCanPlayThrough = () => {
+    setIsAudioLoaded(true); // Mark the audio as loaded
+    if (isReallyPlaying) {
+      audioRef.current.play().catch((error) => {
+        console.log("Failed to play the song:", error);
+      });
+    }
+   
+  };
   //play and pause player based on isReallyPlaying
   useEffect(() => {
     if (!isReallyPlaying) {
@@ -52,17 +60,9 @@ const AudioPlayer = () => {
         console.log("Failed to play the audio",error);
       });
     }
-  }, [isReallyPlaying,currentSong]);
+  }, [isReallyPlaying,currentSong, handleCanPlayThrough]);
 
-  const handleCanPlayThrough = () => {
-    setIsAudioLoaded(true); // Mark the audio as loaded
-    if (isReallyPlaying) {
-      audioRef.current.play().catch((error) => {
-        console.log("Failed to play the song:", error);
-      });
-    }
-   
-  };
+
   //seek progress bar
   const handleSeek = (e) => {
     const seekTime = parseFloat(e.target.value);

@@ -2,7 +2,6 @@ import React from 'react'
 import "./AlbumList.css"
 import AlbumCard from './Albumcard'  
 import { albums } from '../../firebase/firebase'
-import { Link } from 'react-router-dom'
 import store from '../../Reducers/Store'
 import { SHOWPLAYER } from '../../Reducers/actions'
 import { useEffect } from 'react'

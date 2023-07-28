@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import "./SongsList.css";
-import AudioPlayer from "../audio-player/AudioPlayer";
-import { songsDB } from "../audio-player/AudioDB";
-import { albums, songs } from "../../firebase/firebase";
+
 import { SONGS_PLAYLIST, CURRENT_SONG } from "../../Reducers/actions";
 import store from "../../Reducers/Store";
 import { useSelector } from "react-redux/es/hooks/useSelector";

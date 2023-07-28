@@ -1,7 +1,5 @@
 import React from "react";
 import "./AlbumInfo.css";
-import imageUrl from "../asserts/Cover.jpg";
-import SongsCard from "../songs/SongsCard";
 import SongsList from "../songs/SongsList";
 import { albums } from "../../firebase/firebase";
 import { useParams } from "react-router-dom";
