@@ -1,9 +1,8 @@
 // Initialize the Firebase Admin SDK
 import dbConfig from "../../firebase/firebase";
 import axios from 'axios';
-import { spotScrapper,spotScrapperApiKey } from "../../API/apikey";
 import { collectionRef } from "../../firebase/firebase";
-
+const baseUrl="https://spotify-scraper.p.rapidapi.com/v1/track/search"
 const songsDB = [];
 const songsFinalDB = [];
 const deStructure = (data,song_url) => {
@@ -96,13 +95,13 @@ const fetchAllSongsInfo = async () => {
 const fetchSongsInfo = async (title, artist,song_url) => {
   const options = {
     method: 'GET',
-    url: 'https://spotify-scraper.p.rapidapi.com/v1/track/search',
+    url: {baseUrl},
     params: {
       name: `${title} ${artist}`
     },
     headers: {
-      'X-RapidAPI-Key': {spotScrapperApiKey},
-      'X-RapidAPI-Host': {spotScrapper}
+      'X-RapidAPI-Key': process.env.REACT_APP_SPOT_SCRAPPER_API_KEY,
+      'X-RapidAPI-Host': process.env.REACT_APP_SPOT_SCRAPPER
     }
   };
 
