@@ -63,7 +63,12 @@ const reducer = (state = initialState, action) => {
     //NExt song in queue
     case NEXT_SONG:
       const nextIndex = (getSongIndex(state.currentSong.song_name,state.playlist) + 1) % state.playlist.length;
-      
+      if(state.playlist.length===1){
+          return{
+            ...state,
+            isPlaying:false
+          }
+      }
       return {
         ...state,
         prevSong: state.currentSong,

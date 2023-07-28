@@ -27,13 +27,13 @@ import {
 const AudioPlayer = () => {
   const currentSong = useSelector((state) => state.currentSong);
   const isReallyPlaying = useSelector((state) => state.isPlaying);
-  const playlist = useSelector((state) => state.playlist.length);
+ 
   const audioRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.3);
   const [isTextScrolling, setIsTextScrolling] = useState(false);
   const [isAudioLoaded, setIsAudioLoaded] = useState(false);
-
+  
   //click play/pause or press space
   //store change
   const handlePlayPause = () => {
@@ -84,11 +84,12 @@ const AudioPlayer = () => {
   };
   //next song store state change
   const handleNext = () => {
-    if (playlist.length !== 1) {
+    // console.log("playlist is ",playlist);
+    
       store.dispatch({
         type: NEXT_SONG,
       });
-    }
+    
   };
   //loop functionality
   const handleLoop = () => {
