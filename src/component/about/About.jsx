@@ -7,9 +7,9 @@ const About = () => {
   return (
     <div className="about">
       <div className="about-container">
-        <h1 className="about-heading">
+        {/* <h1 className="about-heading">
           Disclaimer: Voidify - Music Player App
-        </h1>
+        </h1> */}
         <p className="about-para">
           Welcome to Voidify! Please note that Voidify does not condone or
           encourage any form of copyright infringement. The app has been

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import Navbar from "./component/home/Navbar";
@@ -8,13 +8,17 @@ import AudioPlayer from "./component/audio-player/AudioPlayer";
 import AlbumInfo from "./component/albumInfo/AlbumInfo";
 import About from "./component/about/About";
 import { useSelector } from "react-redux";
+import {runCode} from "./component/audio-player/AudioDB"
 const App = () => {
   const showPlayer=useSelector((state)=>state.showPlayer) ;
-  
+  useEffect(() => {
+    // console.log("only once");
+    runCode();
+  }, []);
   return (
     
     <BrowserRouter>
-   
+      
       <Navbar />
       
       {showPlayer && <AudioPlayer />}

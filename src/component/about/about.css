@@ -58,7 +58,7 @@
     }
   }
 
-.about-heading {
+/* .about-heading {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 70px;
     font-weight: 10px;
@@ -74,7 +74,7 @@
       font-weight:bolder;
 
     }
-  }
+  } */
  
 @media (min-width: 767px) and (max-width: 1444px) {
   .about-heading {

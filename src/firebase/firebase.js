@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 // const firebaseConfig=process.env.firebaseConfig;
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-// console.log("Firebase initiated");
+console.log("Firebase initiated");
 
 const db = firebaseApp.firestore();
 const collectionRef = db.collection("Musics-checked");

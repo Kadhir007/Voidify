@@ -5,6 +5,9 @@ import { collectionRef } from "../../firebase/firebase";
 const baseUrl="https://spotify-scraper.p.rapidapi.com/v1/track/search"
 const songsDB = [];
 const songsFinalDB = [];
+const spotScrapperApiKey = process.env.REACT_APP_SPOT_SCRAPPER_API_KEY;
+const spotScrapper=process.env.REACT_APP_SPOT_SCRAPPER;
+
 const deStructure = (data,song_url) => {
   if (!data) {
     return { status: false };
@@ -55,14 +58,17 @@ const fetchMusicsData = async () => {
   try {
     // Get the documents from the 'Musics' collection
     const snapshot = await dbConfig.collection('Musics').get();
-
+    
     // Iterate over the documents and update the "checked" field to false
     const updatePromises = [];
     snapshot.forEach((doc) => {
+   
       if (!doc.data().checked) {
+
         const updatePromise = doc.ref.update({ checked: true });
         updatePromises.push(updatePromise);
         songsDB.push(doc.data());
+       
       }
     });
 
@@ -93,15 +99,16 @@ const fetchAllSongsInfo = async () => {
 };
 
 const fetchSongsInfo = async (title, artist,song_url) => {
+ 
   const options = {
     method: 'GET',
-    url: {baseUrl},
+    url: baseUrl,
     params: {
       name: `${title} ${artist}`
     },
     headers: {
-      'X-RapidAPI-Key': process.env.REACT_APP_SPOT_SCRAPPER_API_KEY,
-      'X-RapidAPI-Host': process.env.REACT_APP_SPOT_SCRAPPER
+      'X-RapidAPI-Key': spotScrapperApiKey,
+      'X-RapidAPI-Host': spotScrapper
     }
   };
 
@@ -123,9 +130,9 @@ const runCode = async () => {
 
 };
 
-runCode();
+
 console.log("songs final DB",songsFinalDB);
 
 
-export {songsDB};
+export {songsDB,runCode};
 export default songsFinalDB;

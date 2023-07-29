@@ -113,7 +113,7 @@ const AudioPlayer = () => {
     if (screenWidth <= 767) {
       setVolume(1);
     }
-    console.log(volume);
+    // console.log(volume);
   }, []);
 
   // check for Event handlers
@@ -193,7 +193,7 @@ const AudioPlayer = () => {
           </div>
 
           <div className="progress-bar" >
-            <div className="current-time-container" style={{widtth:'20px' ,marginRight:'14px'}}>
+            <div className="current-time-container" style={{widtth:'20px' ,marginRight:'20px'}}>
             <h2 style={{ color: "gray" }}>{`${Math.floor(
               currentTime / 60
             )}:${String(Math.floor(currentTime % 60)).padStart(2, "0")}`}</h2>
