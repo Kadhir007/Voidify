@@ -33,7 +33,7 @@ const AudioPlayer = () => {
   const [volume, setVolume] = useState(0.3);
   const [isTextScrolling, setIsTextScrolling] = useState(false);
   const [isAudioLoaded, setIsAudioLoaded] = useState(false);
-  
+
   //click play/pause or press space
   //store change
   const handlePlayPause = () => {
@@ -65,6 +65,7 @@ const AudioPlayer = () => {
 
   //seek progress bar
   const handleSeek = (e) => {
+    
     const seekTime = parseFloat(e.target.value);
     setCurrentTime(seekTime);
     
@@ -100,6 +101,9 @@ const AudioPlayer = () => {
   };
   //volume slider functionality
   const handleVolumeChange = (e) => {
+    if(audioRef.current.muted){
+      audioRef.current.muted=!audioRef.current.muted;
+    }
     const volume = parseFloat(e.target.value);
     setVolume(volume);
     audioRef.current.volume = volume;
@@ -140,6 +144,20 @@ const AudioPlayer = () => {
   useEffect(() => {
     setIsTextScrolling(currentSong.song_name.length > 42);
   }, [currentSong]);
+
+  const handleMute=()=>{
+    if(volume>0){
+      audioRef.current.muted = true;
+      setVolume(0);
+    }
+    else{
+      setVolume(0.3);
+      audioRef.current.muted=false;
+      audioRef.current.volume=0.3;
+    }
+    
+    
+  }
 
   return (
     <div className="audio-player slide-in-from-bottom">
@@ -223,22 +241,24 @@ const AudioPlayer = () => {
       </div>
       <div className="right-part">
         <div className="volume-slider">
-          {volume <= 0.1 && (
+          {volume === 0 && (
             <BsFillVolumeMuteFill
               className="speaker-icon"
               style={{ opacity: "0.3" }}
+              onClick={handleMute}
             />
           )}
-          {volume > 0.1 && volume < 0.5 && (
-            <BsFillVolumeOffFill className="speaker-icon" />
+          {volume > 0 && volume < 0.5 && (
+            <BsFillVolumeOffFill className="speaker-icon" onClick={handleMute}/>
           )}
           {volume >= 0.5 && volume < 0.7 && (
-            <BsFillVolumeDownFill className="speaker-icon" />
+            <BsFillVolumeDownFill className="speaker-icon" onClick={handleMute} />
           )}
           {volume >= 0.7 && (
             <BsFillVolumeUpFill
               className="speaker-icon"
               style={{ color: "red" }}
+              onClick={handleMute}
             />
           )}
 

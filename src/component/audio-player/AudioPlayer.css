@@ -206,6 +206,7 @@ h2{
   color: white;
   position: relative;
   margin-right: 3px;
+  cursor: pointer;
 }
 .song-namee {
   color: white;
