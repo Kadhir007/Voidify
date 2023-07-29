@@ -1,8 +1,10 @@
 # Getting Started with Create React App
 
+Check out Voidify [here](https://voidify-kad.netlify.app/).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9f49ee1b-9e2e-4a48-898e-e2f02d2a61b6/deploy-status)](https://app.netlify.com/sites/dainty-marigold-d2dc30/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9f49ee1b-9e2e-4a48-898e-e2f02d2a61b6/deploy-status)](https://app.netlify.com/sites/voidify-kad/deploys)
 
 ## Available Scripts
 

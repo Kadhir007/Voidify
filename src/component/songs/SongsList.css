@@ -92,6 +92,11 @@
 
   }
 }
+@media (min-width: 768px) and (max-width: 1444px) {
+  .song-details {
+    white-space: normal;
+  }
+}
 
 .song-name {
   color: #fff;
@@ -111,6 +116,13 @@
        
   }
 }
+@media (min-width: 768px) and (max-width: 1444px) {
+  .song-name{
+    font-size: .8rem;
+    width: 250px;
+    font-weight: normal;
+  }
+}
 
 
 
@@ -125,6 +137,12 @@
 @media (max-width: 767px) {
   .album {
     display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1444px) {
+  .album{
+    font-size: 0.6rem;
+    width: 250px;
   }
 }
 
@@ -142,6 +160,12 @@
     align-self: self-start;
   }
 }
+@media (min-width: 768px) and (max-width: 1444px) {
+  .artist {
+   width: 100px;
+  }
+}
+
 
 .song-metadata {
   display: flex;

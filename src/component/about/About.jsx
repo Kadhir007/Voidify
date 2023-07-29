@@ -39,12 +39,12 @@ const About = () => {
             className="github"
             style={{ textAlign: "center", display: "flex" }}
             onClick={() =>
-              window.open("https://me-tube-kad.netlify.app/", "_blank")
+              window.open("https://github.com/Kadhir007/Voidify", "_blank")
             }
             
             
           >
-            <AiFillGithub style={{ height: "19px", width: "19px" }} />
+            <AiFillGithub style={{ height: "21px", width: "21px" }} />
             <p style={{ paddingLeft: "5px" }}>source code</p>
           </button>
           <button

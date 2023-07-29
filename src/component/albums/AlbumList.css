@@ -39,6 +39,17 @@
       justify-content: space-around; 
     }
   }
+  @media (min-width: 768px) and (max-width: 1444px) {
+    .album-list {
+      margin: 10px 0px 70px 0px;
+      grid-template-columns: repeat(3, 1fr);
+      height: auto;
+      padding: 0;
+      gap: 30px 0px;
+      justify-content: space-around;
+    }
+  }
+  
 
   .grid-container{
     z-index: 0;

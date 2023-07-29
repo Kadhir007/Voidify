@@ -60,7 +60,6 @@
 
 .about-heading {
     font-family: 'Nunito Sans', sans-serif;
-
     font-size: 70px;
     font-weight: 10px;
     text-align: center;
@@ -76,6 +75,12 @@
 
     }
   }
+ 
+@media (min-width: 767px) and (max-width: 1444px) {
+  .about-heading {
+    font-size:45px;
+  }
+}
 
 .about-para {
     margin: 20px;
@@ -93,6 +98,12 @@
      text-align:start
     }
   }
+  @media (min-width: 767px) and (max-width: 1444px) {
+    .about-para {
+      font-size:40px;
+    }
+  }
+  
 .about button {
     appearance: none;
     background-color: #FAFBFC;
@@ -155,9 +166,10 @@
    }
    @media (max-width: 767px) {
     .github {
-      width: 150px; /* Change font size for smaller screens */
+      width: 130px; /* Change font size for smaller screens */
         height: 40px;
-        justify-content: center;
+        justify-content:flex-start;
+
 
     }
   }

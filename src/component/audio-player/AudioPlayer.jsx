@@ -105,6 +105,17 @@ const AudioPlayer = () => {
     audioRef.current.volume = volume;
   };
 
+  //setting the volume to full on mobile devices because mobiles doesn't have access to volume slider
+  useEffect(() => {
+    
+    const screenWidth = window.innerWidth;
+    // Set the volume value to 1 if the screen width is less than or equal to 767 pixels
+    if (screenWidth <= 767) {
+      setVolume(1);
+    }
+    console.log(volume);
+  }, []);
+
   // check for Event handlers
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
@@ -181,11 +192,15 @@ const AudioPlayer = () => {
             />
           </div>
 
-          <div className="progress-bar">
+          <div className="progress-bar" >
+            <div className="current-time-container" style={{widtth:'20px' ,marginRight:'14px'}}>
             <h2 style={{ color: "gray" }}>{`${Math.floor(
               currentTime / 60
             )}:${String(Math.floor(currentTime % 60)).padStart(2, "0")}`}</h2>
+
+            </div>
             <input
+          
               type="range"
               value={currentTime}
               max={
