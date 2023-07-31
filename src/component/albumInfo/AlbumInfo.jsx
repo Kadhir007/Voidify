@@ -69,7 +69,7 @@ const AlbumInfo = () => {
           </div>
         </div>
       </div>
-      <div className="songs-container">
+      <div className="song-list-container">
         <SongsList songs_info={albums[albumId].songs} makeStyle={true} />
       </div>
     </div>

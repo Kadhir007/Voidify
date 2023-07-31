@@ -10,12 +10,14 @@ const SongsList = ({ songs_info, makeStyle }) => {
     store.dispatch({
       type: SHOWPLAYER,
     });
+    window.scrollTo(0, 0);
   }, []);
   // Conditionally assign the songs_info array to the songs array
   const songsToRender = songs_info !== undefined ? songs_info : songs;
 
   return (
-    <div className={makeStyle ? "song-list-important" : "song-list"}>
+    
+      <div className={makeStyle ? "song-list-important" : "song-list"}>
       <div className="title-song">
         <h1 style={{zIndex:'-1'}}  className={makeStyle ? "hide-heading" : ""}>Available Songs </h1>
       </div>
@@ -23,6 +25,7 @@ const SongsList = ({ songs_info, makeStyle }) => {
         <SongsCard song={song} key={index} makeStyle={makeStyle} />
       ))}
     </div>
+    
   );
 };
 

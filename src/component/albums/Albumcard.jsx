@@ -3,7 +3,10 @@ import "./AlbumCard.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 const AlbumCard = ({ album, id }) => {
-  const currentAlbum = useSelector((state) => state.currentSong.album_name);
+
+  //matching currentAlbum photo for illuminating current album becase song list doesnt have album photo 
+  const currentAlbumPhoto=useSelector((state)=>state.currentSong.album_photo);
+
   return (
     <Link
       to={{ pathname: `/album/${id}`, state: { album } }}
@@ -13,7 +16,7 @@ const AlbumCard = ({ album, id }) => {
         className="card"
         style={{
           background:
-            currentAlbum === album.album_name ? "#376b2f" : "#282828",
+            currentAlbumPhoto === album.album_photo ? "#376b2f" : "#282828",
         }}
       >
         <div

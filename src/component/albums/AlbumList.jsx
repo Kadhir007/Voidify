@@ -5,12 +5,15 @@ import { albums } from '../../firebase/firebase'
 import store from '../../Reducers/Store'
 import { SHOWPLAYER } from '../../Reducers/actions'
 import { useEffect } from 'react'
+
+
 const AlbumList = () => {
-  
+
   useEffect(() => {
     store.dispatch({
       type: SHOWPLAYER,
     });
+    window.scrollTo(0, 0);
   }, []);
   return (
     
@@ -22,7 +25,7 @@ const AlbumList = () => {
     </div>
     <div className='grid-container'>
     <div className='album-list'>
-      {albums.map((album, index) => <AlbumCard  key={index} album={album} id={index} />)}
+      {albums.map((album, index) => <AlbumCard  key={index} album={album} id={index}  />)}
     </div>
     </div>
     </div>
