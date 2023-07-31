@@ -1,14 +1,21 @@
 import React from "react";
 import "./AlbumCard.css";
 import { Link } from "react-router-dom";
-
-const AlbumCard = ({ album,id }) => {
+import { useSelector } from "react-redux/es/hooks/useSelector";
+const AlbumCard = ({ album, id }) => {
+  const currentAlbum = useSelector((state) => state.currentSong.album_name);
   return (
     <Link
-    to={{ pathname: `/album/${id}`, state: { album } }}
-    style={{ textDecoration: "none" }} // Add this style to remove underline
-  >
-      <div className="card">
+      to={{ pathname: `/album/${id}`, state: { album } }}
+      style={{ textDecoration: "none" }} // Add this style to remove underline
+    >
+      <div
+        className="card"
+        style={{
+          background:
+            currentAlbum === album.album_name ? "#376b2f" : "#282828",
+        }}
+      >
         <div
           className="card-image"
           style={{ backgroundImage: `url(${album.album_photo})` }}
@@ -22,7 +29,7 @@ const AlbumCard = ({ album,id }) => {
           <p className="author">{album.songs[0].artists_names[0]}</p>
         </div>
       </div>
-    </Link> 
+    </Link>
   );
 };
 

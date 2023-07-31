@@ -65,23 +65,30 @@ const AudioPlayer = () => {
 
   //seek progress bar
   const handleSeek = (e) => {
-    
+    console.log("e value ",e.target.value);
     const seekTime = parseFloat(e.target.value);
     setCurrentTime(seekTime);
-    
     audioRef.current.currentTime = seekTime;
   };
   //diplay Time while playing
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
+    
   };
 
   //previous song store state change
   const handlePrevious = () => {
+    if(audioRef.current.currentTime >3){
+      const e = { target: { value: 0 } };
+      handleSeek(e);
+    }
+    else{
     store.dispatch({
       type: PREV_SONG,
     });
-    audioRef.current.autoplay = true;
+   
+  }
+  audioRef.current.autoplay = true;
   };
   //next song store state change
   const handleNext = () => {
