@@ -8,7 +8,7 @@ const songsFinalDB = [];
 const spotScrapperApiKey = process.env.REACT_APP_SPOT_SCRAPPER_API_KEY;
 const spotScrapper=process.env.REACT_APP_SPOT_SCRAPPER;
 
-const deStructure = (data,song_url) => {
+const deStructure = (data,song_url,song_position) => {
   if (!data) {
     return { status: false };
   }
@@ -19,8 +19,6 @@ const deStructure = (data,song_url) => {
   const artists_names = artists.map((artist) => artist.name);
   const song_duration = durationText;
   const album_photo = album.cover[2].url;
-
-
   return {
     song_name,
     album_name,
@@ -28,7 +26,8 @@ const deStructure = (data,song_url) => {
     song_duration,
     album_photo,
     song_url:song_url,
-    status: true
+    status: true,
+    position:song_position
   };
 };
 
@@ -86,7 +85,7 @@ const fetchAllSongsInfo = async () => {
     const promises = songsDB.map(async (ele, index) => {
       
       await delay(index * 6000); // Wait for 6 seconds multiplied by the index
-      return fetchSongsInfo(ele.title, ele.artist,ele.song_url);
+      return fetchSongsInfo(ele.title,ele.song_url,ele.position);
       
     });
 
@@ -98,13 +97,13 @@ const fetchAllSongsInfo = async () => {
   }
 };
 
-const fetchSongsInfo = async (title, artist,song_url) => {
+const fetchSongsInfo = async (title,song_url,song_position) => {
  
   const options = {
     method: 'GET',
     url: baseUrl,
     params: {
-      name: `${title} ${artist}`
+      name: `${title}`
     },
     headers: {
       'X-RapidAPI-Key': spotScrapperApiKey,
@@ -114,7 +113,7 @@ const fetchSongsInfo = async (title, artist,song_url) => {
 
   try {
     const response = await axios.request(options);
-    return deStructure(response.data,song_url);
+    return deStructure(response.data,song_url,song_position);
   } catch (error) {
     console.error('Error fetching song info:', error);
 

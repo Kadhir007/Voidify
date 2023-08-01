@@ -61,7 +61,7 @@
   cursor: pointer;
   height: 4.5rem;
   transition: background-color 0.5s ease;
-  
+  transition: transform 0.2s ease;
   
   
 }

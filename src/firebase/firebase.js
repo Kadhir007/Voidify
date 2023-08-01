@@ -43,6 +43,7 @@ songs.forEach((song) => {
     artists_names,
     song_duration,
     song_url,
+    position,
   } = song;
 
   const existingAlbum = albums.find((album) => album.album_name === album_name);
@@ -53,7 +54,8 @@ songs.forEach((song) => {
       artists_names: artists_names,
       song_duration,
       song_url,
-      album_photo //just now added
+      album_photo,
+      position //just now added
     });
   } else {
     albums.push({
@@ -66,6 +68,7 @@ songs.forEach((song) => {
           artists_names: artists_names,
           song_duration,
           song_url,
+          position
         },
       ],
     });
@@ -78,5 +81,8 @@ songs.sort((a, b) =>
 albums.sort((a, b) =>
   a.album_name.toLowerCase().localeCompare(b.album_name.toLowerCase())
 );
+albums.forEach(album => {
+  album.songs.sort((a, b) => a.position - b.position);
+});
 export { collectionRef, songs, albums };
 export default db;
