@@ -20,7 +20,7 @@ const About = () => {
           any songs played through Voidify, we encourage you to support the
           artists by legally obtaining their music through authorized platforms.
           <br />
-          <span
+          {/* <span
             style={{
               fontStyle: "italic",
               display: "flex",
@@ -29,7 +29,7 @@ const About = () => {
             }}
           >
             *happyVishal/jpg*
-          </span>
+          </span> */}
         </p>
         <div
           className="button-container"
