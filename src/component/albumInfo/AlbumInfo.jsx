@@ -3,51 +3,67 @@ import "./AlbumInfo.css";
 import SongsList from "../songs/SongsList";
 import { albums } from "../../firebase/firebase";
 import { useParams } from "react-router-dom";
+
+import { PiQueueFill } from "react-icons/pi";
 import store from "../../Reducers/Store";
-import { CURRENT_SONG, SHUFFLE, SONGS_PLAYLIST } from "../../Reducers/actions";
+import {
+  ADDTOQUEUE,
+  CURRENT_SONG,
+  SHUFFLE,
+  SONGS_PLAYLIST,
+} from "../../Reducers/actions";
 const AlbumInfo = () => {
   const albumId = parseInt(useParams().albumId);
-  const handlePlayClick=()=>{
+  const handlePlayClick = () => {
     store.dispatch({
-      type:SONGS_PLAYLIST,
+      type: SONGS_PLAYLIST,
+      payload: {
+        albumId: albumId,
+      },
+    });
+
+    store.dispatch({
+      type: CURRENT_SONG,
+      payload: {
+        song: "album",
+      },
+    });
+  };
+  const handleAddToQueue = () => {
+    store.dispatch({
+      type:ADDTOQUEUE,
       payload:{
-        albumId:albumId
+        queue:albums[albumId].songs,
       }
     })
-      
+  };
+  const handleShuffleClick = () => {
     store.dispatch({
-        type:CURRENT_SONG,
-        payload:{
-          song:"album"
-        }
-      })
-
-  }
-  const handleShuffleClick=()=>{
+      type: SONGS_PLAYLIST,
+      payload: {
+        albumId: albumId,
+      },
+    });
     store.dispatch({
-      type:SONGS_PLAYLIST,
-      payload:{
-        albumId:albumId
-      }
-    })
+      type: SHUFFLE,
+    });
     store.dispatch({
-      type:SHUFFLE
-    })
-    store.dispatch({
-      type:CURRENT_SONG,
-      payload:{
-        song:"album"
-      }
-    })
-
-
-  }
+      type: CURRENT_SONG,
+      payload: {
+        song: "album",
+      },
+    });
+  };
 
   return (
     <div className="album-info">
       <div className="album-container">
         <div className="album-photoo">
-          <img src={albums[albumId].album_photo} alt="album " className="album-photo-image" />
+          <img
+            src={albums[albumId].album_photo}
+            alt="album "
+            className="album-photo-image"
+          />
         </div>
         <div className="album-details">
           <div className="albumm">
@@ -64,8 +80,22 @@ const AlbumInfo = () => {
             </p>
           </div>
           <div className="album-buttons">
-            <button className="album-info-buttons" onClick={()=>handlePlayClick()}>Play</button>
-            <button className="album-info-buttons" onClick={()=>handleShuffleClick()}>Shuffle</button>
+            <button
+              className="album-info-buttons"
+              onClick={() => handlePlayClick()}
+            >
+              Play
+            </button>
+            <button
+              className="album-info-buttons"
+              onClick={() => handleShuffleClick()}
+            >
+              Shuffle
+            </button>
+            <PiQueueFill
+              onClick={handleAddToQueue}
+              className="addtoqueue"
+            />
           </div>
         </div>
       </div>

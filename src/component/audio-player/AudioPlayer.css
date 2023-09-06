@@ -6,8 +6,8 @@
 }
 @media (max-width: 767px) {
   .icon {
-    width: 6ch;
-    height: 6ch; /* Change font size for smaller screens */
+    width: 5ch;
+    height: 5ch; /* Change font size for smaller screens */
     margin-top: 20px;
   }
 }
@@ -20,9 +20,29 @@
   right: 45px;
 }
 @media (max-width: 767px) {
-  .shuffle {
-    right: -100px;
-    margin-right: 10px;
+  .shuffle{
+    /* left: 190px; */
+    position: fixed;
+    right: -97px;
+    padding-right: 10px;
+    margin-left: 10px;
+  }
+}
+/* LOOP */
+.loop{
+  width: 3.5ch;
+  height: 45px;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  left: 45px;
+}
+@media (max-width: 767px) {
+  .loop{
+    /* left:-30px; */
+    position: fixed;
+    left: 170px;
+    padding-right: 10px;
   }
 }
 .audio-player {
@@ -180,6 +200,7 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 

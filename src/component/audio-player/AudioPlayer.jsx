@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./AudioPlayer.css";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
+import {RxLoop} from "react-icons/rx";
 
 // import imageUrl from "../asserts/Cover.jpg";
 import {
@@ -22,12 +23,13 @@ import {
   PREV_SONG,
   NEXT_SONG,
   SHUFFLE,
+  LOOP,
 } from "../../Reducers/actions";
 
 const AudioPlayer = () => {
   const currentSong = useSelector((state) => state.currentSong);
   const isReallyPlaying = useSelector((state) => state.isPlaying);
- 
+  const isLoop=useSelector((state)=>state.loop);
   const audioRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.3);
@@ -65,7 +67,7 @@ const AudioPlayer = () => {
 
   //seek progress bar
   const handleSeek = (e) => {
-    console.log("e value ",e.target.value);
+    // console.log("e value ",e.target.value);
     const seekTime = parseFloat(e.target.value);
     setCurrentTime(seekTime);
     audioRef.current.currentTime = seekTime;
@@ -93,19 +95,27 @@ const AudioPlayer = () => {
   //next song store state change
   const handleNext = () => {
     // console.log("playlist is ",playlist);
-    
+      audioRef.current.currentTime = 0; 
       store.dispatch({
         type: NEXT_SONG,
       });
-    
   };
-  //loop functionality
-  const handleLoop = () => {
-    // Handle loop logic here
+  //shuffle functionality
+  const handleShuffle = () => {
+    // Handle shuffle logic here
     store.dispatch({
       type: SHUFFLE,
     });
   };
+
+  //Loop functionality
+  const handleLoop = () => {
+    // Handle Loop logic here
+    store.dispatch({
+      type: LOOP,
+    });
+  };
+
   //volume slider functionality
   const handleVolumeChange = (e) => {
     if(audioRef.current.muted){
@@ -114,7 +124,7 @@ const AudioPlayer = () => {
     const volume = parseFloat(e.target.value);
     setVolume(volume);
     audioRef.current.volume = volume;
-  };
+  }; 
 
   //setting the volume to full on mobile devices because mobiles doesn't have access to volume slider
   useEffect(() => {
@@ -192,6 +202,12 @@ const AudioPlayer = () => {
       <div className="middle-part">
         <div className="control-container">
           <div className="controls">
+          <RxLoop 
+            className="prev-button icon loop"
+            onClick={handleLoop}
+            style={{ color: isLoop ? '#376b2f' : 'white' }}
+
+          />
             <BiSkipPreviousCircle
               className="prev-button icon"
               onClick={handlePrevious}
@@ -213,7 +229,8 @@ const AudioPlayer = () => {
             />
             <BiShuffle
               className="prev-button icon shuffle"
-              onClick={handleLoop}
+             
+              onClick={handleShuffle}
             />
           </div>
 
@@ -242,7 +259,11 @@ const AudioPlayer = () => {
               onChange={handleSeek}
               className="progress-bar-input"
             />
+            {/* <h2 style={{ color: "gray" }}>{currentSong.song_duration}</h2> */}
+            <div className="current-time-container" style={{widtth:'20px' ,marginRight:'20px'}}>
             <h2 style={{ color: "gray" }}>{currentSong.song_duration}</h2>
+
+            </div>
           </div>
         </div>
       </div>

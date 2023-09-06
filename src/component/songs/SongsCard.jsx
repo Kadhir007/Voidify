@@ -1,13 +1,24 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-
-import { SONGS_PLAYLIST, CURRENT_SONG } from "../../Reducers/actions";
+import { MdQueueMusic } from "react-icons/md";
+import {
+  SONGS_PLAYLIST,
+  CURRENT_SONG,
+  ADDTOQUEUE,
+} from "../../Reducers/actions";
 import store from "../../Reducers/Store";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 const SongsCard = ({ song, makeStyle }) => {
   const albumId = parseInt(useParams().albumId);
   const currentSong = useSelector((state) => state.currentSong.song_name);
-  
+  const handleAddToQueue = () => {
+    store.dispatch({
+      type:ADDTOQUEUE,
+      payload:{
+        queue:[song],
+      }
+    })
+  };
   const handleClick = () => {
     // console.log("album Id is ", albumId);
     store.dispatch({
@@ -28,8 +39,7 @@ const SongsCard = ({ song, makeStyle }) => {
       className="song"
       onClick={handleClick}
       style={{
-        backgroundColor:
-          currentSong === song.song_name ?   "#376b2f":"#282828",
+        backgroundColor: currentSong === song.song_name ? "#376b2f" : "#282828",
       }}
     >
       {!makeStyle && (
@@ -43,6 +53,13 @@ const SongsCard = ({ song, makeStyle }) => {
       <div className="song-metadata">
         <p className="duration">Duration {song.song_duration}</p>
       </div>
+      <MdQueueMusic
+        style={{ height: "50px", width: "50px", color: "white" ,marginLeft:'10px'}}
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent event propagation
+          handleAddToQueue(); // Call your function
+        }}
+      />
     </div>
   );
 };
